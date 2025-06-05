@@ -1,3 +1,7 @@
+.body{
+    background-color: #a2adb6;
+}
+
 .header{
     height: 20vh;
     display: flex;
@@ -11,9 +15,42 @@
     flex: 1;
 }
 
+.main{
+    display: flex;
+}
+
 .workspace{
     height: 60vh; 
     width: 70vw; 
     border: 1px solid #000; 
     overflow: scroll;
+    flex: 3;
+    background-color: white;
+}
+
+.tools{
+    flex: 1;
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+}
+.current_color{
+    flex: 1;
+}
+
+.color_show{
+    flex: 2;
+    background-color: #cfe8fc;
+}
+
+.color_selector{
+    flex: 5;
+}
+
+.used_colors{
+    flex: 4;
+}
+
+.brush{
+    flex: 2;
 }

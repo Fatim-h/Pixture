@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <div id="header" class="header"><button id="openDialogBtn">Create new workspace</button>
+    <div><button>Save</button>
+    <button>Upload</button></div>
+    </div>
+
+<!-- Dialog element -->
+<dialog id="inputDialog">
+  <form method="dialog">
+    <label for="userInput">Enter dimensions:</label><br>
+    Width: <input type="number" id="workspace_width" name="workspace_width"><br><br>
+    Height: <input type="number" id="workspace_height" name="workspace_height"><br><br>
+    <button id="confirmBtn">OK</button>
+    <button type="reset">Cancel</button>
+  </form>
+</dialog>
+
+ <div id="workspace" class="workspace"></div>
+
+  <script type="text/babel" src="file.js"></script>
+  </body>
+</html>

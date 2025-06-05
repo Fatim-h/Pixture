@@ -1,0 +1,19 @@
+.header{
+    height: 20vh;
+    display: flex;
+    padding: 2%;
+}
+.create{
+    flex: 2;
+}
+
+.save-upload{
+    flex: 1;
+}
+
+.workspace{
+    height: 60vh; 
+    width: 70vw; 
+    border: 1px solid #000; 
+    overflow: scroll;
+}

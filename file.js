@@ -1,3 +1,4 @@
+export {currentRows,currentCols};
 
 const { useState } = React;
 
@@ -35,13 +36,11 @@ function App({ rows, cols }) {
   return <Grid rows={rows} cols={cols} />;
 }
 
-// Initial render with empty grid
 const root = ReactDOM.createRoot(document.getElementById("workspace"));
 let currentRows = 0;
 let currentCols = 0;
 root.render(<App rows={currentRows} cols={currentCols} />);
 
-// Handle dialog logic
 const dialog = document.getElementById("inputDialog");
 const openBtn = document.getElementById("openDialogBtn");
 
@@ -62,4 +61,3 @@ document.getElementById("confirmBtn").addEventListener("click", (e) => {
 
   dialog.close();
 });
-

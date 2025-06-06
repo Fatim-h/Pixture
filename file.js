@@ -1,5 +1,3 @@
-export {currentRows,currentCols};
-
 const { useState } = React;
 
 function Grid({ rows, cols }) {

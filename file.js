@@ -33,17 +33,23 @@ function Grid({ rows, cols, cellColors, onCellClick }) {
 function App({ rows, cols }) {
   const total = rows * cols;
   const [cellColors, setCellColors] = useState(Array(total).fill("#ffffff"));
-  const [selectedColor, setSelectedColor] = useState("#fffffff");
+  useEffect(() => {
+  window.setCellColors = setCellColors; // for tools.js
+  window.getCellColors = () => [...cellColors]; // for tools.js
+  }, [cellColors]);
+  const [selectedColor, setSelectedColor] = useState("#ffffff");
 
   const handleCellClick = (index) => {
   const newColors = [...cellColors];
   const prevColor = newColors[index];
   const newColor = selectedColor;
-
+  redo_stack = [];
+    
   // only do this if the color is changing
   if (prevColor !== newColor) {
     newColors[index] = newColor;
     setCellColors(newColors);
+    undo_stack.push([...cellColors]);
     palateedit(prevColor, newColor, true);  // update palate
   }
 };

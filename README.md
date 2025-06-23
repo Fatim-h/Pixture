@@ -1,6 +1,6 @@
-# Pixture
-
 ![pixture_icon-removebg-preview](https://github.com/user-attachments/assets/47bf72d5-ebd6-4f25-a840-79db3c131f05)
+
+# Pixture
 
 A pixel art plaform. Allows you to make and save pixelated art.
 

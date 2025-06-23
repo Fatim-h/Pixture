@@ -1,5 +1,8 @@
 # Pixture
 
+![Pixture-Logo](https://github.com/user-attachments/assets/b8d59ae9-34d5-4014-96f5-efff3afa5276)
+
+
 A pixel art plaform. Allows you to make and save pixelated art.
 
 For the Design: there is currently no design, display is underwork.

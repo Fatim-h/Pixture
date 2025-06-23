@@ -1,4 +1,4 @@
-![pixture_icon-removebg-preview](https://github.com/user-attachments/assets/47bf72d5-ebd6-4f25-a840-79db3c131f05)
+![Pixture-Logo](https://github.com/user-attachments/assets/d8ad095e-e64b-4880-8ee9-12ea70e1ce33)
 
 # Pixture
 

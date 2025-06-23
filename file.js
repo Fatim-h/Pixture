@@ -136,21 +136,28 @@ root.render(<App rows={currentRows} cols={currentCols} />);
 // dialog logic
 const dialog = document.getElementById("inputDialog");
 const openBtn = document.getElementById("openDialogBtn");
+const closeBtn = document.getElementById("closeBtn");
 
 openBtn.addEventListener("click", () => {
   dialog.showModal();
 });
 
 document.getElementById("confirmBtn").addEventListener("click", (e) => {
-  e.preventDefault(); // Prevent form submission
+  e.preventDefault();
   const width = parseInt(document.getElementById("workspace_width").value, 10);
   const height = parseInt(document.getElementById("workspace_height").value, 10);
 
   if (!isNaN(width) && !isNaN(height) && width > 0 && height > 0) {
     currentCols = width;
     currentRows = height;
+    window.currentCols = currentCols;
+    window.currentRows = currentRows;
     root.render(<App rows={currentRows} cols={currentCols} />);
   }
 
+  dialog.close();
+});
+
+closeBtn.addEventListener("click", (e) => {
   dialog.close();
 });

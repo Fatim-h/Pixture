@@ -1,4 +1,4 @@
-![Pixture-Logo](https://github.com/user-attachments/assets/d8ad095e-e64b-4880-8ee9-12ea70e1ce33)
+![Untitled design (2)](https://github.com/user-attachments/assets/200c4dd5-000c-4bfe-9b2d-a78bf6f808c3)
 
 # Pixture
 

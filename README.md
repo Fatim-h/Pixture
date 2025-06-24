@@ -1,4 +1,5 @@
-![Untitled design (2)](https://github.com/user-attachments/assets/200c4dd5-000c-4bfe-9b2d-a78bf6f808c3)
+
+https://github.com/user-attachments/assets/28335272-f714-4132-b70d-ff08eaf74f6f
 
 # Pixture
 
@@ -8,6 +9,8 @@ For the Design: there is currently no design, display is underwork.
 
 *CAUTION: There is a different limit for pixel dimesions for different screens. I have not calculated what it is yet, so if you are using on mobile: 50* * *50* *laptop/PC:* *100* * *100*. *If you exceed this limit website will crash =D*
 
+logostuff: Canva
+
 # Tech Stack:
 . HTML(Canvas)
 . CSS
@@ -15,6 +18,7 @@ For the Design: there is currently no design, display is underwork.
 
 # Underwork:
 . Upload functionality
+. Palatte functionality
 . Secret stuff
 . Design and display
 . README and comments T-T

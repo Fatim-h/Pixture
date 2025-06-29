@@ -11,9 +11,12 @@
   </head>
   <body>
 
-    <div id="header" class="header"><div id="create" class="create"><button id="openDialogBtn">Create new workspace</button></div>
-    <div id="save-upload"><button id="save" onclick="openSaveDialog()">Save</button>
-    <button>Upload</button></div>
+    <div id="header" class="header">
+      <div id="logo"><a href="https://docs.google.com/document/d/1-4NU1pWt2mrYsPnCeg_HQXiWBb4RhGJeIxH-QjTcbdE/edit?usp=sharing" target="_blank"><img src="PixtureLogo.png" style="height: 100%"></a></div>
+      <div id="create" class="create"><button id="openDialogBtn">Create new workspace</button></div>
+      <div id="save-upload">
+        <button id="save" onclick="openSaveDialog()">Save</button>
+        <button>Upload</button></div>
     </div>
 
 <!-- Dialog element -->
@@ -39,10 +42,15 @@
     <button id="saveCloseBtn" type="reset">Cancel</button>
   </form>
 </dialog>
-
 <div id="main" class="main">
  <div id="workspace" class="workspace"></div>
  <div id="tools" class="tools">
+  <div id="tools_option">
+    <button id="basic" onclick="click_option(1)">Basic</button>
+    <button id="palatte" onclick="click_option(2)">Palatte</button>
+    <button id="canvas" onclick="click_option(3)">Canvas</button>
+  </div>
+  <div id="basic_tools" style="display: block;">
   <div><span id="current_color" class="current_color"></span></div>
   <div id="color_show" class="color_show"></div>
   <div id="color_selector" class="color_Selector"><input type="color" id="favcolor" name="favcolor" value="#ffffff"></div>
@@ -80,6 +88,13 @@
     <button id="paint"><i class="fa fa-paint-brush"></i></button>
     <button id="undo" onclick="handleUndo()">Undo</button>
     <button id="redo" onclick="handleRedo()">Redo</button>
+  </div>
+  </div>
+  <div id="palatte_tools" style="display: none;">
+    <p>test</p>
+  </div>
+  <div id="canvas_tools" style="display: none;">
+    <p>test1</p>
   </div>
  </div>
 </div>

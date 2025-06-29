@@ -9,6 +9,7 @@ For the Design: there is currently no design, display is underwork.
 *CAUTION: There is a different limit for pixel dimesions for different screens. If you exceed this limit website will crash =D. I have not calculated what it is yet, so if you are using on mobile: 50* * *50* *laptop/PC:* *100* * *100*.
 
 Visit the site: https://pixture-iota.vercel.app/ 
+
 logostuff: Canva
 
 # Tech Stack:

@@ -2,6 +2,7 @@ const { useState, useEffect } = React;
 
 function Grid({ rows, cols, cellColors, onCellClick }) {
   const total = rows * cols;
+
   const gridStyle = {
     display: "grid",
     gridTemplateColumns: `repeat(${cols}, 1fr)`,
@@ -34,8 +35,8 @@ function App({ rows, cols }) {
   const total = rows * cols;
   const [cellColors, setCellColors] = useState(Array(total).fill("#ffffff"));
   useEffect(() => {
-  window.setCellColors = setCellColors; // for tools.js
-  window.getCellColors = () => [...cellColors]; // for tools.js
+  window.setCellColors = setCellColors; // expose setter for tools.js
+  window.getCellColors = () => [...cellColors]; // expose getter for tools.js
   }, [cellColors]);
   const [selectedColor, setSelectedColor] = useState("#ffffff");
 
@@ -44,7 +45,7 @@ function App({ rows, cols }) {
   const prevColor = newColors[index];
   const newColor = selectedColor;
   redo_stack = [];
-    
+
   // only do this if the color is changing
   if (prevColor !== newColor) {
     newColors[index] = newColor;
@@ -72,7 +73,7 @@ function App({ rows, cols }) {
   }, [rows, cols]);
 
   if (rows === 0 || cols === 0) {
-    return <div>Please enter dimensions to generate grid.</div>;
+    return <div>Create a new workspace.</div>;
   }
 
   return (
@@ -85,7 +86,6 @@ function App({ rows, cols }) {
   );
 }
 
-
 const colors_used = [];
 const color_used_count = [];
 
@@ -94,7 +94,7 @@ function updatePaletteDisplay() {
   const cells = paletteDiv.getElementsByClassName("color-cell");
 
   for (let i = 0; i < cells.length; i++) {
-    cells[i].style.backgroundColor = colors_used[i] || "#a2adb6";
+    cells[i].style.backgroundColor = colors_used[i] || "#ffffff";
   }
 }
 
@@ -127,7 +127,7 @@ function palateedit(prevcolorr, colorr, typ) {
   }
 }
 
-// initial render with empty grid
+// initial render
 const root = ReactDOM.createRoot(document.getElementById("workspace"));
 let currentRows = 0;
 let currentCols = 0;
@@ -152,7 +152,12 @@ document.getElementById("confirmBtn").addEventListener("click", (e) => {
     currentRows = height;
     window.currentCols = currentCols;
     window.currentRows = currentRows;
+
     root.render(<App rows={currentRows} cols={currentCols} />);
+  }
+  const cells = document.getElementById("used_colors").getElementsByClassName("color-cell");
+  for(let i = 0; i < 28; i++){
+    cells[i].style.backgroundColor = "#a2adb6";
   }
 
   dialog.close();
@@ -161,3 +166,17 @@ document.getElementById("confirmBtn").addEventListener("click", (e) => {
 closeBtn.addEventListener("click", (e) => {
   dialog.close();
 });
+
+function click_option(option) {
+    const sections = {
+      1: document.getElementById("basic_tools"),
+      2: document.getElementById("palatte_tools"),
+      3: document.getElementById("canvas_tools"),
+    };
+    Object.values(sections).forEach((section) => {
+      if (section) section.style.display = "none";
+    });
+    if (sections[option]) {
+      sections[option].style.display = "block";
+    }
+}

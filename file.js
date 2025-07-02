@@ -86,47 +86,6 @@ function App({ rows, cols }) {
   );
 }
 
-const colors_used = [];
-const color_used_count = [];
-
-function updatePaletteDisplay() {
-  const paletteDiv = document.getElementById("used_colors");
-  const cells = paletteDiv.getElementsByClassName("color-cell");
-
-  for (let i = 0; i < cells.length; i++) {
-    cells[i].style.backgroundColor = colors_used[i] || "#ffffff";
-  }
-}
-
-function palateedit(prevcolorr, colorr, typ) {
-  if (typ) {
-    if (prevcolorr !== colorr) {
-      for (let x in colors_used) {
-        if (colors_used[x] === prevcolorr) {
-          color_used_count[x] -= 1;
-          if (color_used_count[x] === 0) {
-            colors_used.splice(x, 1);
-            color_used_count.splice(x, 1);
-            updatePaletteDisplay(); // render used_color
-          }
-          break;
-        }
-      }
-
-      for (let x in colors_used) {
-        if (colors_used[x] === colorr) {
-          color_used_count[x] += 1;
-          return;
-        }
-      }
-
-      colors_used.push(colorr);
-      color_used_count.push(1);
-      updatePaletteDisplay(); // render used_color
-    }
-  }
-}
-
 // initial render
 const root = ReactDOM.createRoot(document.getElementById("workspace"));
 let currentRows = 0;
@@ -154,6 +113,7 @@ document.getElementById("confirmBtn").addEventListener("click", (e) => {
     window.currentRows = currentRows;
 
     root.render(<App rows={currentRows} cols={currentCols} />);
+    if (window.resetPalette) window.resetPalette();
   }
   const cells = document.getElementById("used_colors").getElementsByClassName("color-cell");
   for(let i = 0; i < 28; i++){

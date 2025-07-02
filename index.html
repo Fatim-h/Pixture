@@ -12,11 +12,16 @@
   <body>
 
     <div id="header" class="header">
-      <div id="logo"><a href="https://docs.google.com/document/d/1-4NU1pWt2mrYsPnCeg_HQXiWBb4RhGJeIxH-QjTcbdE/edit?usp=sharing" target="_blank"><img src="PixtureLogo.png" style="height: 100%"></a></div>
-      <div id="create" class="create"><button id="openDialogBtn">Create new workspace</button></div>
-      <div id="save-upload">
-        <button id="save" onclick="openSaveDialog()">Save</button>
-        <button>Upload</button></div>
+
+      <div id="logo" class="logo"><a href="https://docs.google.com/document/d/1-4NU1pWt2mrYsPnCeg_HQXiWBb4RhGJeIxH-QjTcbdE/edit?usp=sharing" target="_blank"><img src="PixtureLogo.png" style="height: 100%"></a></div>
+      <div id="options" class="options">
+        <div id="create" class="create"><button id="openDialogBtn">Create new workspace</button></div>
+          <div id="save-upload">
+            <button id="save" onclick="openSaveDialog()">Save</button>
+            <button>Upload</button>
+          </div>
+      </div>
+
     </div>
 
 <!-- Dialog element -->
@@ -54,36 +59,7 @@
   <div><span id="current_color" class="current_color"></span></div>
   <div id="color_show" class="color_show"></div>
   <div id="color_selector" class="color_Selector"><input type="color" id="favcolor" name="favcolor" value="#ffffff"></div>
-  <div id="used_colors" class="used_colors">
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-    <div class="color-cell"></div>
-  </div>
+  <div id="used_colors" class="used_colors"></div>
   <div id="brush" class="brush">
     <button id="paint"><i class="fa fa-paint-brush"></i></button>
     <button id="undo" onclick="handleUndo()">Undo</button>
@@ -102,6 +78,7 @@
 
   <script type="text/babel" src="file.js"></script>
   <script type="text/babel" src="tools.js"></script>
+  <script type="text/babel" src="palate.js"></script>
   <script src="save.js"></script>
   </body>
 </html>

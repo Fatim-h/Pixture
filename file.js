@@ -115,11 +115,7 @@ document.getElementById("confirmBtn").addEventListener("click", (e) => {
     root.render(<App rows={currentRows} cols={currentCols} />);
     if (window.resetPalette) window.resetPalette();
   }
-  const cells = document.getElementById("used_colors").getElementsByClassName("color-cell");
-  for(let i = 0; i < 28; i++){
-    cells[i].style.backgroundColor = "#a2adb6";
-  }
-
+  
   dialog.close();
 });
 

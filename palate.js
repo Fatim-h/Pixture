@@ -7,10 +7,11 @@ function UsedColorPalette({ colors, onSelect }) {
           className="color-cell"
           style={{
             backgroundColor: color,
-            border: "1px solid #aaa",
+            border: "2px solid #e7e7e7",
             width: "100%",
             height: "3vh",
-            aspectRatio: "4 / 3",
+            aspectRatio: "1 / 1",
+            borderRadius: "50%",
             cursor: "pointer",
             transition: "background 0.2s ease",
           }}

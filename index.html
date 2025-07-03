@@ -11,19 +11,6 @@
   </head>
   <body>
 
-    <div id="header" class="header">
-
-      <div id="logo" class="logo"><a href="https://docs.google.com/document/d/1-4NU1pWt2mrYsPnCeg_HQXiWBb4RhGJeIxH-QjTcbdE/edit?usp=sharing" target="_blank"><img src="PixtureLogo.png" style="height: 100%"></a></div>
-      <div id="options" class="options">
-        <div id="create" class="create"><button id="openDialogBtn">Create new workspace</button></div>
-          <div id="save-upload">
-            <button id="save" onclick="openSaveDialog()">Save</button>
-            <button>Upload</button>
-          </div>
-      </div>
-
-    </div>
-
 <!-- Dialog element -->
 <dialog id="inputDialog">
   <form method="dialog">
@@ -47,10 +34,30 @@
     <button id="saveCloseBtn" type="reset">Cancel</button>
   </form>
 </dialog>
+
+<dialog id = "uploadDialog">
+  <form method="dialog">
+    <input type="file" id="uploadImage" accept="image/png"/>
+    <button id="uploadCloseBtn" type="reset">Cancel</button>
+  </form>
+</dialog>
+
 <div id="main" class="main">
  <div id="workspace" class="workspace"></div>
  <div id="tools" class="tools">
-  <div id="tools_option">
+  <div id="header" class="header">
+
+      <div id="logo" class="logo"><a href="https://docs.google.com/document/d/1-4NU1pWt2mrYsPnCeg_HQXiWBb4RhGJeIxH-QjTcbdE/edit?usp=sharing" target="_blank"><img src="PixtureLogo.png" style="height: 100%"></a></div>
+      <div id="options" class="options">
+        <div id="create" class="create"><button id="openDialogBtn">Create new workspace</button></div>
+          <div id="save-upload">
+            <button id="save" onclick="openSaveDialog()">Save</button>
+            <button id="uploadBtn" onclick="openUploadDialogue()">Upload</button>
+          </div>
+      </div>
+
+    </div>
+  <div id="tools_option" class="tools_option">
     <button id="basic" onclick="click_option(1)">Basic</button>
     <button id="palatte" onclick="click_option(2)">Palatte</button>
     <button id="canvas" onclick="click_option(3)">Canvas</button>
@@ -67,7 +74,6 @@
   </div>
   </div>
   <div id="palatte_tools" style="display: none;">
-    <p>test</p>
   </div>
   <div id="canvas_tools" style="display: none;">
     <p>test1</p>
@@ -80,5 +86,6 @@
   <script type="text/babel" src="tools.js"></script>
   <script type="text/babel" src="palate.js"></script>
   <script src="save.js"></script>
+  <script src="upload.js"></script>
   </body>
 </html>

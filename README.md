@@ -26,9 +26,9 @@ logostuff: Canva
 
 ## Credits:
 
-Design advice: [Muhammad Abd-Ur-Rehman] (https://github.com/DarkiCraft)
+Design advice: [Muhammad Abd-Ur-Rehman](https://github.com/DarkiCraft)
 
-Testing: [Arsal] (https://github.com/Arsal-Here), Fareha, [Sameen] (https://www.linkedin.com/in/sameen-samad-152a482a4/), [Muhammad Abd-Ur-Rehman] (https://github.com/DarkiCraft)
+Testing: [Arsal](https://github.com/Arsal-Here), Fareha, [Sameen](https://www.linkedin.com/in/sameen-samad-152a482a4/), [Muhammad Abd-Ur-Rehman](https://github.com/DarkiCraft)
 
 
 Q) Why React?

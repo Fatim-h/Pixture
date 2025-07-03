@@ -12,17 +12,24 @@ Visit the site: https://pixture-iota.vercel.app/
 
 logostuff: Canva
 
-# Tech Stack:
+## Tech Stack:
 . HTML
 . CSS
 . JS(vanilla, React, Canvas)
 
-# Underwork:
-. Upload functionality
+## Underwork:
+. Upload functionality (loadImageToGrid(imageSrc), scalability)
 . Palatte functionality
 . Design and display
 . README and comments T-T
 ...
+
+## Credits:
+
+Design advice: [Muhammad Abd-Ur-Rehman] (https://github.com/DarkiCraft)
+
+Testing: [Arsal] (https://github.com/Arsal-Here), Fareha, [Sameen] (https://www.linkedin.com/in/sameen-samad-152a482a4/), [Muhammad Abd-Ur-Rehman] (https://github.com/DarkiCraft)
+
 
 Q) Why React?
 A) To make undo and redo functinalities easy, and to make reusable components.

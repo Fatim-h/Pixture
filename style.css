@@ -1,10 +1,13 @@
 body{
     background-color: #587c8c9a;
+    display: flex;
+    flex-direction: column;
 }
 
 .header{
     background-color: #c8f4f4;
     height: 10vh;
+    width: 100%;
     display: flex;
     box-shadow: inset #7f7f7fce;
 }
@@ -28,10 +31,11 @@ body{
 
 .main{
     display: flex;
+    flex: 5;
 }
 
 .workspace{
-    height: 70vh; 
+    height: 90vh; 
     width: 70vw; 
     border: 1px solid #000;
     margin: 2%;
@@ -42,10 +46,12 @@ body{
 
 .tools{
     flex: 1;
-    padding: 1%;
+    padding: 0 0 0 1%;
     display: flex;
     flex-direction: column;
+    background-color: #587c8c46;
 }
+
 .current_color{
     flex: 1;
 }
@@ -64,8 +70,8 @@ body{
 .used_colors {
     padding: 3% 0 3% 0;
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 5px;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 7px;
     align-content: center;
 }
 
@@ -75,6 +81,10 @@ body{
 
 .favcolor{
     cursor: pointer;
+}
+
+.tools_option{
+    padding: 5%;
 }
 
 .brush{

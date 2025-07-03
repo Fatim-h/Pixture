@@ -6,13 +6,15 @@ function UsedColorPalette({ colors, onSelect }) {
           key={index}
           className="color-cell"
           style={{
-            backgroundColor: color,
-            border: "2px solid #e7e7e7",
+            border: "2px #587c8c46",
+            background: `radial-gradient(circle, ${color} 50% ,transparent)`,
+            borderRadius: "50%",
+            padding: "2px",
             width: "100%",
             height: "3vh",
             aspectRatio: "1 / 1",
-            borderRadius: "50%",
             cursor: "pointer",
+            display: "flex",
             transition: "background 0.2s ease",
           }}
           onClick={() => onSelect(color)}
@@ -37,7 +39,7 @@ function Palette() {
   };
 
   React.useEffect(() => {
-    // define globally accessible palateedit function
+    // globally accessible palateedit function for file.js
     window.palateedit = (prevColor, newColor, shouldEdit) => {
       if (!shouldEdit || prevColor === newColor) return;
 
@@ -45,7 +47,6 @@ function Palette() {
         const updatedColors = [...prevColorsUsed];
         const updatedCounts = [...colorUsedCount];
 
-        // Decrement count or remove prevColor
         const prevIdx = updatedColors.indexOf(prevColor);
         if (prevIdx !== -1) {
           updatedCounts[prevIdx]--;
@@ -55,7 +56,6 @@ function Palette() {
           }
         }
 
-        // Increment or add newColor
         const newIdx = updatedColors.indexOf(newColor);
         if (newIdx !== -1) {
           updatedCounts[newIdx]++;
@@ -74,13 +74,17 @@ function Palette() {
     window.resetPalette = () => {
       setColorsUsed([]);
       setColorUsedCount([]);
-      setCellColors(Array(28).fill("#a2adb6"));
+
+      if (window.currentCols && window.currentRows) {
+        setCellColors(Array(window.currentCols * window.currentRows).fill("#ffffff"));
+      }
+      undo_stack = [];
+      redo_stack = [];
     };
   }, []);
 
   return <UsedColorPalette colors={colorsUsed} onSelect={handleCellClick} />;
 }
 
-// Mount component
 const root3 = ReactDOM.createRoot(document.getElementById("used_colors"));
 root3.render(<Palette />);

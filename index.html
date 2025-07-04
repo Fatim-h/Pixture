@@ -44,19 +44,20 @@
 
 <div id="main" class="main">
  <div id="workspace" class="workspace"></div>
- <div id="tools" class="tools">
-  <div id="header" class="header">
+ <div id="sidebar" class="sidebar">
+   <div id="header" class="header">
 
       <div id="logo" class="logo"><a href="https://docs.google.com/document/d/1-4NU1pWt2mrYsPnCeg_HQXiWBb4RhGJeIxH-QjTcbdE/edit?usp=sharing" target="_blank"><img src="PixtureLogo.png" style="height: 100%"></a></div>
       <div id="options" class="options">
-        <div id="create" class="create"><button id="openDialogBtn">Create new workspace</button></div>
+        <div id="create"><button id="openDialogBtn" class="create">Create new workspace</button></div>
           <div id="save-upload">
-            <button id="save" onclick="openSaveDialog()">Save</button>
-            <button id="uploadBtn" onclick="openUploadDialogue()">Upload</button>
+            <button id="save" class="save" onclick="openSaveDialog()"><i class="fa fa-save" style="font-size:25px"></i></button>
+            <button id="uploadBtn" class="save" onclick="openUploadDialogue()"><i class="fa fa-upload" style="font-size:25px"></i></button>
           </div>
       </div>
-
     </div>
+ 
+ <div id="tools" class="tools">
   <div id="tools_option" class="tools_option">
     <button id="basic" onclick="click_option(1)">Basic</button>
     <button id="palatte" onclick="click_option(2)">Palatte</button>
@@ -78,6 +79,7 @@
   <div id="canvas_tools" style="display: none;">
     <p>test1</p>
   </div>
+ </div>
  </div>
 </div>
    <canvas id="exportCanvas" style="display: none;"></canvas>

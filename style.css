@@ -3,9 +3,23 @@ body{
     display: flex;
     flex-direction: column;
 }
+.sidebar{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.tools{
+    flex: 15;
+    padding: 0 1% 0 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #587c8c46;
+}
 
 .header{
-    background-color: #c8f4f4;
+    flex: 1;
+    background-color: #c2f2f1;
     height: 10vh;
     width: 100%;
     display: flex;
@@ -13,20 +27,13 @@ body{
 }
 
 .logo{
-    flex: 3;
+    flex: 1;
+    margin-left: 2%;
 }
 
 .options{
-    flex: 1;
+    flex: 2;
     display: flex;
-}
-
-.create{
-    flex: 1;
-}
-
-.save-upload{
-    flex: 1;
 }
 
 .main{
@@ -44,16 +51,9 @@ body{
     background-color: white;
 }
 
-.tools{
-    flex: 1;
-    padding: 0 0 0 1%;
-    display: flex;
-    flex-direction: column;
-    background-color: #587c8c46;
-}
-
 .current_color{
     flex: 1;
+    padding-left: 3%;
 }
 
 .color_show{
@@ -86,7 +86,48 @@ body{
 .tools_option{
     padding: 5%;
 }
-
 .brush{
     flex: 2;
+}
+
+.create{
+    border: 1px solid rgba(0, 0, 0, 0.349);
+    border-radius: 10%;
+    position: relative;
+    top: 10%;
+    margin-left: 10%;
+    width: 80%;
+    height: 80%;
+    flex: 2;
+    background-color:#f0ffff;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); 
+    cursor: pointer;
+    
+}
+
+.create:hover {
+    background-color: #cbd7d7;
+}
+
+.save-upload{
+    flex: 1;
+
+}
+
+.save {
+    border: 1px solid rgba(0, 0, 0, 0.349);
+    border-radius: 10%;
+    position: relative;
+    top: 8%;
+    height: 40%;
+    width: 80%;
+    flex: 1;
+    margin: 0 0% 4% 10%;
+    background-color:#f0ffff;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); 
+    cursor: pointer;
+}
+
+.save:hover {
+    background-color: #cbd7d7;
 }

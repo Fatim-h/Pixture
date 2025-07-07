@@ -6,7 +6,6 @@ function UsedColorPalette({ colors, onSelect }) {
           key={index}
           className="color-cell"
           style={{
-            border: "2px #587c8c46",
             background: `radial-gradient(circle, ${color} 50% ,transparent)`,
             borderRadius: "50%",
             padding: "2px",
@@ -27,6 +26,7 @@ function UsedColorPalette({ colors, onSelect }) {
 function Palette() {
   const [colorsUsed, setColorsUsed] = React.useState([]);
   const [colorUsedCount, setColorUsedCount] = React.useState([]);
+  
 
   const handleCellClick = (color) => {
     const favcolor = document.getElementById("favcolor");
@@ -39,7 +39,17 @@ function Palette() {
   };
 
   React.useEffect(() => {
-    // globally accessible palateedit function for file.js
+    window.setPaletteColors = (colorsArray) => { 
+      const cleanColors = colorsArray.filter(Boolean);
+      setColorsUsed(cleanColors);
+      setColorUsedCount(cleanColors.map(() => 1));
+    }; //expose for tools.js, file.js
+
+    window.getPaletteColors = () => [...colorsUsed];
+  }, [colorsUsed]); //expose for tools.js, file.js
+
+  React.useEffect(() => {
+    // exposing palateedit for file.js
     window.palateedit = (prevColor, newColor, shouldEdit) => {
       if (!shouldEdit || prevColor === newColor) return;
 
@@ -70,7 +80,7 @@ function Palette() {
     };
   }, [colorUsedCount]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     window.resetPalette = () => {
       setColorsUsed([]);
       setColorUsedCount([]);
@@ -86,5 +96,6 @@ function Palette() {
   return <UsedColorPalette colors={colorsUsed} onSelect={handleCellClick} />;
 }
 
-const root3 = ReactDOM.createRoot(document.getElementById("used_colors"));
+// Mount component
+const root3 = ReactDOM.createRoot(document.getElementById("used_colors_palatte"));
 root3.render(<Palette />);

@@ -37,7 +37,7 @@
 
 <dialog id = "uploadDialog">
   <form method="dialog">
-    <input type="file" id="uploadImage" accept="image/png"/>
+    <input type="file" id="uploadImage" accept="image/png, image/jpeg"/>
     <button id="uploadCloseBtn" type="reset">Cancel</button>
   </form>
 </dialog>
@@ -67,17 +67,37 @@
   <div><span id="current_color" class="current_color"></span></div>
   <div id="color_show" class="color_show"></div>
   <div id="color_selector" class="color_Selector"><input type="color" id="favcolor" name="favcolor" value="#ffffff"></div>
-  <div id="used_colors" class="used_colors"></div>
   <div id="brush" class="brush">
     <button id="paint"><i class="fa fa-paint-brush"></i></button>
     <button id="undo" onclick="handleUndo()">Undo</button>
     <button id="redo" onclick="handleRedo()">Redo</button>
   </div>
+  <div id="canvas_show" class="canvas_show">
+    <canvas id="liveCanvas" width="300" height="300" style="border:1px solid #ccc;"></canvas></div>
   </div>
   <div id="palatte_tools" style="display: none;">
+    <div id="used_colors_palatte" class="used_colors"></div>
+    <div id="palatte_options" class="palatte_options">
+      <button id="replace_color">Replace</button>
+      <button id="palate_undo">Undo</button>
+      <button id="palate_undo">Redo</button>
+    </div>
+    <div id="palatte_themes">
+      <form>
+        <p>Theme Selector:</p>
+        <label htmlFor="myDropdown">Choose an option:</label>
+        <select id="myDropdown" name="myDropdown">
+          <option value="">--Please choose an option--</option>
+          <option value="option1">Greyscale</option>
+          <option value="option2">Binary</option>
+          <option value="option3">Monochrome</option>
+          <option value="option4">Triad</option>
+        </select>
+      </form>
+    </div>
   </div>
   <div id="canvas_tools" style="display: none;">
-    <p>test1</p>
+    <p id="width_height"></p>
   </div>
  </div>
  </div>

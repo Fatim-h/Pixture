@@ -3,7 +3,7 @@ function openUploadDialogue() {
   uploadDialog.showModal();
 }
 
-window.openUploadDialogue = openUploadDialogue; // Expose globally for onclick
+window.openUploadDialogue = openUploadDialogue;
 
 const uploadInput = document.getElementById("uploadImage");
 const uploadDialog = document.getElementById("uploadDialog");
@@ -14,26 +14,25 @@ uploadCloseBtn.addEventListener("click", (e) => {
   uploadDialog.close();
 });
 
-// Handle file input change
 uploadInput.addEventListener("change", (e) => {
   const file = e.target.files[0];
   if (!file) return;
 
-  if (file.type !== "image/png") {
-    alert("Please upload a PNG image.");
+  const acceptedTypes = ["image/png", "image/jpeg", "image/jpg"];
+  if (!acceptedTypes.includes(file.type)) {
+    alert("Please upload a PNG or JPG image.");
     return;
   }
 
   const reader = new FileReader();
-  reader.onload = function(event) {
+  reader.onload = function (event) {
     loadImageToGrid(event.target.result);
     uploadDialog.close();
-    uploadInput.value = ""; // reset input for future uploads
+    uploadInput.value = "";
   };
   reader.readAsDataURL(file);
 });
 
-// Function to load the image and update grid colors
 function loadImageToGrid(imageSrc) {
   const img = new Image();
   img.onload = () => {
@@ -45,7 +44,6 @@ function loadImageToGrid(imageSrc) {
       return;
     }
 
-    // Draw image to offscreen canvas scaled to workspace size
     const canvas = document.createElement("canvas");
     canvas.width = width;
     canvas.height = height;

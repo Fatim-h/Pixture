@@ -40,22 +40,7 @@ function App({ rows, cols }) {
   }, [cellColors]);
   const [selectedColor, setSelectedColor] = useState("#ffffff");
 
-  const handleCellClick = (index) => {
-  const newColors = [...cellColors];
-  const prevColor = newColors[index];
-  const newColor = selectedColor;
-  redo_stack = [];
-
-  // only do this if the color is changing
-  if (prevColor !== newColor) {
-    newColors[index] = newColor;
-    setCellColors(newColors);
-    undo_stack.push([...cellColors]);
-    palateedit(prevColor, newColor, true);  // update palate
-  }
-};
-
-  useEffect(() => {
+    useEffect(() => {
     const colorInput = document.getElementById("favcolor");
     const handleColorChange = (e) => {
       setSelectedColor(e.target.value);
@@ -68,13 +53,36 @@ function App({ rows, cols }) {
   }, []);
 
   useEffect(() => {
-    // Reset colors when dimensions change
     setCellColors(Array(total).fill("#ffffff"));
   }, [rows, cols]);
 
-  if (rows === 0 || cols === 0) {
+
+  useEffect(() => {
+  if (cols > 0 && rows > 0) {
+    updateLiveCanvas(cellColors, cols, rows);
+  }
+}, [cellColors, cols, rows]);
+
+if (rows === 0 || cols === 0) {
     return <div>Create a new workspace.</div>;
   }
+
+  const handleCellClick = (index) => {
+  const newColors = [...cellColors];
+  const prevColor = newColors[index];
+  const newColor = selectedColor;
+  redo_stack = [];
+  palatte_redo_stack = [];
+
+  // only if the color is changing
+  if (prevColor !== newColor) {
+    newColors[index] = newColor;
+    setCellColors(newColors);
+    undo_stack.push([...cellColors]);
+    palatte_undo_stack.push(window.getPaletteColors()); 
+    palateedit(prevColor, newColor, true);  // update palate
+  }
+};
 
   return (
     <Grid
@@ -115,7 +123,11 @@ document.getElementById("confirmBtn").addEventListener("click", (e) => {
     root.render(<App rows={currentRows} cols={currentCols} />);
     if (window.resetPalette) window.resetPalette();
   }
-  
+
+  if (window.updateWorkspaceInfo) {
+    window.updateWorkspaceInfo(currentCols, currentRows);
+  }
+
   dialog.close();
 });
 
@@ -136,3 +148,23 @@ function click_option(option) {
       sections[option].style.display = "block";
     }
 }
+
+function updateLiveCanvas(cellColors, cols = currentCols, rows = currentRows, scale = 2) {
+  const canvas = document.getElementById("liveCanvas");
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = cols * scale;
+  canvas.height = rows * scale;
+
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
+      const i = row * cols + col;
+      ctx.fillStyle = cellColors[i] || "#ffffff";
+      ctx.fillRect(col * scale, row * scale, scale, scale);
+    }
+  }
+}
+
+window.updateLiveCanvas = updateLiveCanvas;

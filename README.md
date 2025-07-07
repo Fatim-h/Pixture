@@ -19,8 +19,8 @@ logostuff: Canva
 
 ## Underwork:
 . Upload functionality (loadImageToGrid(imageSrc), scalability)
-. Palatte functionality
-. Design and display
+. Palatte functionality(theme options, replace option)
+. Display
 . README and comments T-T
 ...
 
@@ -32,4 +32,4 @@ Testing: [Arsal](https://github.com/Arsal-Here), Fareha, [Sameen](https://www.li
 
 
 Q) Why React?
-A) To make undo and redo functinalities easy, and to make reusable components.
+A) To make undo and redo functinalities easy, and to make reusable components. Honestly to learn.

@@ -42,6 +42,18 @@
   </form>
 </dialog>
 
+<dialog id = "binaryThemeDialog">
+  <form method="dialog">
+    <label for="basecolor1">Binary Color 1(basecolor):</label>
+    <input type="color" id="bincolor1" name="bincolor1" value="#ffffff">
+
+    <label for="basecolor1">Binary Color 2(secondarycolor):</label>
+    <input type="color" id="bincolor2" name="bincolor2" value="#ffffff">
+    <button id="binConfirmBtn">Okay</button>
+    <button id="binCloseBtn" type="reset">Cancel</button>
+  </form>
+</dialog>
+
 <div id="main" class="main">
  <div id="workspace" class="workspace"></div>
  <div id="sidebar" class="sidebar">
@@ -75,29 +87,34 @@
   <div id="canvas_show" class="canvas_show">
     <canvas id="liveCanvas" width="300" height="300" style="border:1px solid #ccc;"></canvas></div>
   </div>
-  <div id="palatte_tools" style="display: none;">
+  <div id="palatte_tools" style="display: none;flex-direction: column;height: 60vh;">
     <div id="used_colors_palatte" class="used_colors"></div>
     <div id="palatte_options" class="palatte_options">
       <button id="replace_color">Replace</button>
-      <button id="palate_undo">Undo</button>
-      <button id="palate_undo">Redo</button>
+      <button id="palate_undo" onclick="handlePalatteUndo()">Undo</button>
+      <button id="palate_undo" onclick="handlePalatteRedo()">Redo</button>
     </div>
     <div id="palatte_themes">
-      <form>
+      <form id="themeForm">
         <p>Theme Selector:</p>
         <label htmlFor="myDropdown">Choose an option:</label>
         <select id="myDropdown" name="myDropdown">
           <option value="">--Please choose an option--</option>
-          <option value="option1">Greyscale</option>
-          <option value="option2">Binary</option>
-          <option value="option3">Monochrome</option>
-          <option value="option4">Triad</option>
+          <option value="inverted">Inverted</option>
+          <option value="binary">Binary</option>
+          <option value="monochrome">Monochrome</option>
+          <option value="triad">Triad</option>
         </select>
+        <button id="confirmTheme" type="submit">Done</button>
       </form>
     </div>
   </div>
   <div id="canvas_tools" style="display: none;">
-    <p id="width_height"></p>
+    <div id="width_height"></div>
+    <div id="background">
+      <div id="current_bg"></div>
+      <button onclick="removebgclr()">Remove Background</button>
+    </div>
   </div>
  </div>
  </div>
@@ -107,6 +124,8 @@
   <script type="text/babel" src="file.js"></script>
   <script type="text/babel" src="tools.js"></script>
   <script type="text/babel" src="palate.js"></script>
+  <script src="palattetheme.js"></script>
+  <script src="canvas.js"></script>
   <script src="save.js"></script>
   <script src="upload.js"></script>
   </body>

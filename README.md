@@ -4,7 +4,7 @@
 
 A pixel art plaform. Allows you to make and save pixelated art.
 
-For the Design: there is currently no design, display is underwork.
+For the Design: there is currently 50% design, display is underwork.
 
 *CAUTION: There is a different limit for pixel dimesions for different screens. If you exceed this limit website will crash =D. I have not calculated what it is yet, so if you are using on mobile: 50* * *50* *laptop/PC:* *100* * *100*.
 

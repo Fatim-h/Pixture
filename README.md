@@ -19,8 +19,9 @@ logostuff: Canva
 
 ## Underwork:
 . Upload functionality (loadImageToGrid(imageSrc), scalability)
-. Palatte functionality(theme options, replace option)
-. Display
+. Palatte functionality(theme options(binary_theme_logic, monochrome, triad), replace option, undo and redo)
+- Canvas functionality (resizing, background_replacement)
+. Display and Design
 . README and comments T-T
 ...
 

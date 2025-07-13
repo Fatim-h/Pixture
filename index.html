@@ -44,13 +44,30 @@
 
 <dialog id = "binaryThemeDialog">
   <form method="dialog">
-    <label for="basecolor1">Binary Color 1(basecolor):</label>
+    <label for="bincolor1">Binary Color 1(basecolor):</label>
     <input type="color" id="bincolor1" name="bincolor1" value="#ffffff">
 
-    <label for="basecolor1">Binary Color 2(secondarycolor):</label>
+    <label for="bincolor2">Binary Color 2(secondarycolor):</label>
     <input type="color" id="bincolor2" name="bincolor2" value="#ffffff">
+
     <button id="binConfirmBtn">Okay</button>
     <button id="binCloseBtn" type="reset">Cancel</button>
+  </form>
+</dialog>
+
+<dialog id = "triadThemeDialog">
+  <form method="dialog">
+    <label for="tricolor1">Triad Color 1(basecolor):</label>
+    <input type="color" id="tricolor1" name="tricolor1" value="#ffffff">
+
+    <label for="tricolor2">Triad Color 2(secondarycolor):</label>
+    <input type="color" id="tricolor2" name="tricolor2" value="#ffffff">
+
+    <label for="tricolor1">Triad Color 3(tertiarycolor):</label>
+    <input type="color" id="tricolor3" name="tricolor3" value="#ffffff">
+
+    <button id="triConfirmBtn">Okay</button>
+    <button id="triCloseBtn" type="reset">Cancel</button>
   </form>
 </dialog>
 
@@ -112,7 +129,7 @@
   <div id="canvas_tools" style="display: none;">
     <div id="width_height"></div>
     <div id="background">
-      <div id="current_bg"></div>
+      <div id="current_bg"> <p> Background Color : #ffffff</p> <input type="color" id="backcolor" name="backcolor" value="#ffffff"> </div>
       <button onclick="removebgclr()">Remove Background</button>
     </div>
   </div>

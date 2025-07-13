@@ -61,6 +61,9 @@ function applyBinaryThemeDialogHandler() {
 function applyBinaryTheme(color1, color2) {
   const currentColors = window.getCellColors();
   const currentPalette = window.getPaletteColors();
+  console.log(window.backgroundclr);
+  console.log(currentPalette);
+  console.log(window._colorUsedCount);
 
   if (!currentColors || !currentPalette) {
     console.warn("Grid or palette not available");
@@ -68,6 +71,7 @@ function applyBinaryTheme(color1, color2) {
   }
 
   let updatedColors;
+  const updatePalatte = [color1,color2];
 
   if (window.backgroundclr && window.backgroundclr !== "transparent") {
     updatedColors = currentColors.map(color =>
@@ -84,15 +88,17 @@ function applyBinaryTheme(color1, color2) {
     updatedColors = currentColors.map(color =>
       color.toLowerCase() === mostUsedColor.toLowerCase() ? color1 : color2
     );
-
-    window.backgroundclr = color1; // Set it after applying
   }
-
+  window.backgroundclr = color1;
+  window.setPaletteColors(updatePalatte);
   window.setCellColors(updatedColors);
   window.updateLiveCanvas(updatedColors);
 
   window.undo_stack.push(currentColors);
-  window.palatte_undo_stack.push(currentPalette);
+  //window.palatte_undo_stack.push(currentPalette);
+  console.log(window.backgroundclr);
+  console.log(currentPalette);
+  console.log(window._colorUsedCount);
 }
 
 function applyMonochromeTheme() {
@@ -100,12 +106,64 @@ function applyMonochromeTheme() {
   // Add implementation
 }
 
-function applyTriadTheme() {
-  console.log("Triad theme applied");
-  // Add implementation
+function openTriadThemeDialog() {
+  const triDialog = document.getElementById("triadThemeDialog");
+  triDialog?.showModal();
 }
 
-// Hook theme dropdown
+function applyTriadThemeDialogHandler() {
+  const triDialog = document.getElementById("triadThemeDialog");
+  const triConfirmBtn = document.getElementById("triConfirmBtn");
+  const triCloseBtn = document.getElementById("triCloseBtn");
+  const triColor1Input = document.getElementById("tricolor1");
+  const triColor2Input = document.getElementById("tricolor2");
+  const triColor3Input = document.getElementById("tricolor3");
+
+  if (!triDialog || !triConfirmBtn || !triCloseBtn) {
+    console.warn("Triad theme dialog elements not found");
+    return;
+  }
+
+  triCloseBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    triDialog.close();
+  });
+
+  triConfirmBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const color1 = triColor1Input.value;
+    const color2 = triColor2Input.value;
+    const color3 = triColor3Input.value;
+
+    if (
+      !color1 || !color2 || !color3 ||
+      color1 === color2 || color1 === color3 || color2 === color3 || color1 === color2 === color3
+    ) {
+      alert("Please choose three different colors.");
+      return;
+    }
+
+    applyTriadTheme(color1, color2, color3);
+    triDialog.close();
+  });
+}
+
+function applyTriadTheme(color1, color2, color3) {
+  const currentColors = window.getCellColors();
+  const currentPalette = window.getPaletteColors();
+
+  if (!currentColors || !currentPalette) {
+    console.warn("Grid or palette not available");
+    return;
+  }
+
+  const updatePalette = [color1, color2, color3];
+  let updatedColors;
+
+}
+
+//form input
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("themeForm");
 
@@ -135,7 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
         applyMonochromeTheme();
         break;
       case "triad":
-        applyTriadTheme();
+        openTriadThemeDialog();
         break;
       default:
         alert("Please select a theme.");
@@ -145,6 +203,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.palatte_redo_stack_palatte = [];
   });
 
-  // Attach listeners for binary dialog after DOM is ready
   applyBinaryThemeDialogHandler();
+  applyTriadThemeDialogHandler();
 });

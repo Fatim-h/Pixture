@@ -39,6 +39,7 @@ function UsedColorPalette({ colors, onSelect }) {
 function Palette() {
   const [colorsUsed, setColorsUsed] = React.useState([]);
   const [colorUsedCount, setColorUsedCount] = React.useState([]);
+  
 
   const handleCellClick = (color) => {
     const favcolor = document.getElementById("favcolor");
@@ -52,27 +53,20 @@ function Palette() {
     favcolor.dispatchEvent(new Event("input", { bubbles: true }));
   };
 
-  // Expose global access
   React.useEffect(() => {
-    window.setPaletteColors = (colorsArray) => {
+    window.setPaletteColors = (colorsArray) => { 
       const cleanColors = colorsArray.filter(Boolean);
       setColorsUsed(cleanColors);
-      const countArray = cleanColors.map(() => 1);
-      setColorUsedCount(countArray);
-      window._colorUsedCount = countArray; // store globally
-    };
+      setColorUsedCount(cleanColors.map(() => 1));
+    }; //expose for tools.js, file.js
 
     window.getPaletteColors = () => [...colorsUsed];
-    window.getColorUsedCount = () => [...colorUsedCount];
-  }, [colorsUsed, colorUsedCount]);
+  }, [colorsUsed]); //expose for tools.js, file.js
 
-  // Update globally when color count changes
-  React.useEffect(() => {
-    window._colorUsedCount = [...colorUsedCount];
-  }, [colorUsedCount]);
+  
 
-  // Expose palette edit
   React.useEffect(() => {
+    // exposing palateedit for file.js
     window.palateedit = (prevColor, newColor, shouldEdit) => {
       if (!shouldEdit || prevColor === newColor) return;
 
@@ -98,7 +92,6 @@ function Palette() {
         }
 
         setColorUsedCount(updatedCounts);
-        window._colorUsedCount = [...updatedCounts];
         return updatedColors;
       });
     };
@@ -108,7 +101,6 @@ function Palette() {
     window.resetPalette = () => {
       setColorsUsed([]);
       setColorUsedCount([]);
-      window._colorUsedCount = [];
 
       if (window.currentCols && window.currentRows) {
         setCellColors(Array(window.currentCols * window.currentRows).fill("#ffffff"));

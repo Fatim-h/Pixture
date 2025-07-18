@@ -232,4 +232,5 @@ function use_mixer_color(){
   input.value = hex;
   color_show.style.backgroundColor = hex;
   root2.render(<span>Color Hex: {hex}</span>);
+  input.dispatchEvent(new Event("input", { bubbles: true }));
 }

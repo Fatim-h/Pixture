@@ -57,14 +57,6 @@ function App({ rows, cols }) {
   }, []);
 
   useEffect(() => {
-  const colorInput = document.getElementById("favcolor");
-  const colorShow = document.getElementById("color_show");
-
-  if (colorInput) colorInput.value = selectedColor;
-  if (colorShow) colorShow.style.backgroundColor = selectedColor;
-}, [selectedColor]);
-
-  useEffect(() => {
     setCellColors(Array(total).fill("#ffffff"));
   }, [rows, cols]);
 

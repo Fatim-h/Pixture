@@ -56,21 +56,25 @@ function loadImageToGrid(imageSrc) {
     const data = imageData.data;
 
     const colors = [];
+    const paletteSet = new Set();
+
     for (let i = 0; i < data.length; i += 4) {
       const r = data[i];
       const g = data[i + 1];
       const b = data[i + 2];
       const a = data[i + 3];
 
-      if (a === 0) {
-        colors.push("#ffffff");
-      } else {
-        colors.push(rgbToHex(r, g, b));
-      }
+      const hexColor = a === 0 ? "#ffffff" : rgbToHex(r, g, b);
+      colors.push(hexColor);
+      paletteSet.add(hexColor); // Automatically avoids duplicates
     }
 
     if (window.setCellColors) {
       window.setCellColors(colors);
+    }
+
+    if (window.setPaletteColors) {
+      window.setPaletteColors(Array.from(paletteSet));
     }
   };
 
@@ -80,6 +84,7 @@ function loadImageToGrid(imageSrc) {
 
   img.src = imageSrc;
 }
+
 
 function rgbToHex(r, g, b) {
   return (

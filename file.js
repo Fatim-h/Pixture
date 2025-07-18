@@ -23,6 +23,10 @@ function Grid({ rows, cols, cellColors, onCellClick }) {
             aspectRatio: "1 / 1",
             border: "1px solid #aaa",
             cursor: "pointer",
+            // Add fallback for "transparent"
+            backgroundImage: cellColors[i] === "transparent" ? "linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc), linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc)" : "none",
+            backgroundSize: cellColors[i] === "transparent" ? "10px 10px" : "none",
+            backgroundPosition: cellColors[i] === "transparent" ? "0 0, 5px 5px" : "none",
           }}
           onClick={() => onCellClick(i)}
         />
@@ -39,7 +43,7 @@ function App({ rows, cols }) {
   window.getCellColors = () => [...cellColors]; // expose getter for tools.js
   }, [cellColors]);
   const [selectedColor, setSelectedColor] = useState("#ffffff");
-
+    
     useEffect(() => {
     const colorInput = document.getElementById("favcolor");
     const handleColorChange = (e) => {
@@ -51,6 +55,14 @@ function App({ rows, cols }) {
       colorInput.removeEventListener("input", handleColorChange);
     };
   }, []);
+
+  useEffect(() => {
+  const colorInput = document.getElementById("favcolor");
+  const colorShow = document.getElementById("color_show");
+
+  if (colorInput) colorInput.value = selectedColor;
+  if (colorShow) colorShow.style.backgroundColor = selectedColor;
+}, [selectedColor]);
 
   useEffect(() => {
     setCellColors(Array(total).fill("#ffffff"));
@@ -145,6 +157,10 @@ function click_option(option) {
       if (section) section.style.display = "none";
     });
     if (sections[option]) {
+      if (option == 2){
+        sections[option].style.display = "flex";
+        return;
+      }
       sections[option].style.display = "block";
     }
 }
@@ -164,6 +180,10 @@ function updateLiveCanvas(cellColors, cols = currentCols, rows = currentRows, sc
       ctx.fillStyle = cellColors[i] || "#ffffff";
       ctx.fillRect(col * scale, row * scale, scale, scale);
     }
+  }
+}
+
+window.updateLiveCanvas = updateLiveCanvas;
   }
 }
 

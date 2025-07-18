@@ -71,6 +71,19 @@
   </form>
 </dialog>
 
+<dialog id = "MonochromeThemeDialog">
+  <form method="dialog">
+    <label for="monochrome_hue">Select Hue:</label>
+     <input type="range" id="monochrome_hue" name="monochrome_hue" min="0" max="360" value="0" step="1"
+           oninput="updateHuePreview(this.value)">
+    <div id="huePreview" style="width: 100%; height: 30px; margin: 10px; background-color: hsl(0, 100%, 50%);">
+    </div>
+
+    <button id="monoConfirmBtn">Okay</button>
+    <button id="monoCloseBtn" type="reset">Cancel</button>
+  </form>
+</dialog>
+
 <div id="main" class="main">
  <div id="workspace" class="workspace"></div>
  <div id="sidebar" class="sidebar">
@@ -119,11 +132,18 @@
           <option value="">--Please choose an option--</option>
           <option value="inverted">Inverted</option>
           <option value="binary">Binary</option>
-          <option value="monochrome">Monochrome</option>
           <option value="triad">Triad</option>
+          <option value="monochrome">Monochrome</option>
+          <option value="greyscale">Greyscale</option>
+          <option value="unify">Unify</option>
         </select>
         <button id="confirmTheme" type="submit">Done</button>
       </form>
+    </div>
+    <div>
+      <p>Color Mixer:</p>
+      <div id="color_mixer" class="color_mixer" onclick="mix_colors()" style="width:80%;height:80%;border:1px solid #ccc;background-color: #88A2AD;margin: 10%;"></div>
+      <button onclick="use_mixer_color()">Use Color</button>
     </div>
   </div>
   <div id="canvas_tools" style="display: none;">

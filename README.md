@@ -38,4 +38,4 @@ Testing:
 
 
 Q) Why React?
-A) To make undo and redo functinalities easy, and to make reusable components. Honestly to learn.
+- A) To make undo and redo functinalities easy, and to make reusable components. Honestly to learn.

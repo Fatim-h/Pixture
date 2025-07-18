@@ -5,11 +5,14 @@ const color_show = document.getElementById("color_show");
 
 root2.render(<span>Color Hex: {input.value}</span>);
 
-input.addEventListener("change", (e) => {
+input.addEventListener("input", updateColorDisplay);
+input.addEventListener("change", updateColorDisplay);
+
+function updateColorDisplay() {
   const currentColor = input.value;
-  color_show.style.backgroundColor = input.value;
+  color_show.style.backgroundColor = currentColor;
   root2.render(<span>Color Hex: {currentColor}</span>);
-});
+}
 
 function UsedColorPalette({ colors, onSelect }) {
   return (
@@ -171,3 +174,62 @@ function handlePalatteRedo() {
 // Mount component
 const root3 = ReactDOM.createRoot(document.getElementById("used_colors_palatte"));
 root3.render(<Palette />);
+
+function hexToRgb(hex) {
+  hex = hex.replace(/^#/, '');
+  if (hex.length === 3) {
+    hex = hex.split('').map(char => char + char).join('');
+  }
+  const num = parseInt(hex, 16);
+  return [ (num >> 16) & 255, (num >> 8) & 255, num & 255 ];
+}
+
+function rgbToHex(r, g, b) {
+  return "#" + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('');
+}
+
+function parseRgbString(rgbStr) {
+  const match = rgbStr.match(/(\d+),\s*(\d+),\s*(\d+)/);
+  return match ? match.slice(1, 4).map(Number) : [0, 0, 0];
+}
+
+function mix_colors() {
+  const color_mixer = document.getElementById("color_mixer");
+
+  const inputRgb = hexToRgb(input.value);
+  const currentBg = getComputedStyle(color_mixer).backgroundColor;
+  const currentRgb = parseRgbString(currentBg);
+
+  // If the background is the initial color, just use input
+  if (currentBg === "rgb(136, 162, 173)") {
+    color_mixer.style.backgroundColor = input.value;
+    return;
+  }
+
+  const mixed = inputRgb.map((val, i) => Math.round((val + currentRgb[i]) / 2));
+  color_mixer.style.backgroundColor = rgbToHex(...mixed);
+}
+
+function use_mixer_color(){
+  const color_mixer = document.getElementById("color_mixer");
+  const input = document.getElementById("favcolor");
+
+  if (!color_mixer || !input) {
+    console.warn("color_mixer or input not found");
+    return;
+  }
+
+  const rgbStr = getComputedStyle(color_mixer).backgroundColor; // e.g., "rgb(136, 162, 173)"
+  const match = rgbStr.match(/\d+/g);
+
+  if (!match || match.length < 3) {
+    console.warn("Invalid RGB format:", rgbStr);
+    return;
+  }
+
+  const [r, g, b] = match.map(Number);
+  const hex = rgbToHex(r, g, b);
+  input.value = hex;
+  color_show.style.backgroundColor = hex;
+  root2.render(<span>Color Hex: {hex}</span>);
+}

@@ -184,7 +184,3 @@ function updateLiveCanvas(cellColors, cols = currentCols, rows = currentRows, sc
 }
 
 window.updateLiveCanvas = updateLiveCanvas;
-  }
-}
-
-window.updateLiveCanvas = updateLiveCanvas;

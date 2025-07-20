@@ -292,9 +292,43 @@ function applyMonochromeTheme(hue) {
 
     const [newR, newG, newB] = hslToRgb(hue / 360, s, l);
   window.backgroundclr = rgbToHex(newR, newG, newB)
+  undo_stack.push("updatedColors");
   console.log("Monochrome theme applied");
 }
 
+function applyGrayscaleTheme() {
+  const currentColors = window.getCellColors();
+  const currentPalette = window.getPaletteColors();
+
+  if (!currentColors || !currentPalette) {
+    console.warn("Grid or palette not available");
+    return;
+  }
+
+  const updatedColors = currentColors.map(color => {
+    const [r, g, b] = hexToRgb(color);
+    const gray = Math.round(0.21 * r + 0.72 * g + 0.07 * b);
+    return rgbToHex(gray, gray, gray);
+  });
+
+  const updatedPalette = currentPalette.map(color => {
+    const [r, g, b] = hexToRgb(color);
+    const gray = Math.round(0.21 * r + 0.72 * g + 0.07 * b); //the luminosity formula
+    return rgbToHex(gray, gray, gray);
+  });
+
+  window.setCellColors(updatedColors);
+  window.setPaletteColors(updatedPalette);
+
+  if (window.backgroundclr) {
+    const [r, g, b] = hexToRgb(window.backgroundclr);
+    const gray = Math.round(0.21 * r + 0.72 * g + 0.07 * b);
+    window.backgroundclr = rgbToHex(gray, gray, gray);
+  }
+  undo_stack.push("updatedColors");
+
+  console.log("Grayscale theme applied");
+}
 
 
 //form input
@@ -330,7 +364,7 @@ document.addEventListener("DOMContentLoaded", () => {
         openTriadThemeDialog();
         break;
       case "greyscale":
-        openGreyThemeDialog();
+        applyGrayscaleTheme();
         break;
       case "unify":
         openTriadThemeDialog();
@@ -348,6 +382,7 @@ document.addEventListener("DOMContentLoaded", () => {
   applyMonochromeThemeDialogHandler();
 });
 
+// for monochrome dialog
 function updateHuePreview(hue) {
     const preview = document.getElementById('huePreview');
     preview.style.backgroundColor = `hsl(${hue}, 100%, 50%)`;
